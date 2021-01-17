@@ -35,7 +35,7 @@ class GridWorld(gym.Env):
     self.observation_space = spaces.Discrete(self.n_states) # with absorbing state
     #self._seed()
 
-  def _step(self, action):
+  def step(self, action):
     assert self.action_space.contains(action)
 
     if self.state == self.terminal_state:
@@ -59,13 +59,13 @@ class GridWorld(gym.Env):
 
     new_state = self.coord2ind([row, col])
 
-    reward = self._get_reward(new_state=new_state)
+    reward = self.get_reward(new_state=new_state)
 
     self.state = new_state
 
     return self.state, reward, self.done, None
 
-  def _get_reward(self, new_state=None):
+  def get_reward(self, new_state=None):
     if self.done:
       return self.terminal_reward
 
@@ -101,11 +101,11 @@ class GridWorld(gym.Env):
     return col * self.n + row
 
 
-  def _reset(self):
+  def reset(self):
     self.state = self.start_state if not isinstance(self.start_state, str) else np.random.randint(self.n_states - 1)
     self.done = False
     return self.state
 
-  def _render(self, mode='human', close=False):
+  def render(self, mode='human', close=False):
     pass
       
