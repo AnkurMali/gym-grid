@@ -113,7 +113,7 @@ class FourRooms(gym.Env):
       coord_in_room = self.ind2coord(index - self.offsets[room], sizes=self.room_sizes[room])
     return room, coord_in_room # hallway
 
-  def _step(self, action):
+  def step(self, action):
     assert self.action_space.contains(action)
 
     if self.state == self.terminal_state:
@@ -160,7 +160,7 @@ class FourRooms(gym.Env):
 
 
 
-  def _get_reward(self, new_state=None):
+  def get_reward(self, new_state=None):
     if self.done:
       return self.terminal_reward
 
@@ -176,11 +176,11 @@ class FourRooms(gym.Env):
     return (row == 0 or row == self.n - 1 or col == 0 or col == self.n - 1)
 
 
-  def _reset(self):
+  def reset(self):
     self.state = self.start_state if not isinstance(self.start_state, str) else np.random.randint(self.n_states - 1)
     self.done = False
     return self.state
 
-  def _render(self, mode='human', close=False):
+  def render(self, mode='human', close=False):
     pass
       
