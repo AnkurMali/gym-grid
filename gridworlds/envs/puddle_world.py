@@ -39,7 +39,7 @@ COLORS = {0:[0.0,0.0,0.0], 1:[0.5,0.5,0.5], \
           7:[1.0,1.0,0.0],8: [1.0,1.0,1.0]}
 
 class PuddleWorld(gym.Env):
-    metadata = {'render.modes': ['human']}
+    metadata = {'render.modes': ['rgb_array']}
 
     def __init__(self, noise=0.0, terminal_reward=10, 
             border_reward=0.0, step_reward=-0.2, start_state_ind=None, wind = 0.5, confusion = 0.1, mine_reward = -4,
