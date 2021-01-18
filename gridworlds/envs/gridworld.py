@@ -29,7 +29,7 @@ class GridWorld(gym.Env):
     self.absorbing_state = self.n_states - 1
     self.done = False
     self.start_state = start_state #if not isinstance(start_state, str) else np.random.rand(n**2)
-    self._reset()
+    self.reset()
 
     self.action_space = spaces.Discrete(4)
     self.observation_space = spaces.Discrete(self.n_states) # with absorbing state
